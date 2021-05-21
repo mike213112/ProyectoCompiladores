@@ -1,0 +1,192 @@
+package Classs;
+import static Classs.Tokens.*;
+%%
+%class Flex
+%type Tokens
+L=[a-zA-Z_]+
+D=[0-9]+
+espacio=[ ,\t,\r,\n]+
+%{
+    public String lexeme;
+%}
+%%
+
+/* Espacios en blanco */
+{espacio} {/*Ignore*/}
+
+/* Comentarios */
+( "//"(.)* ) {/*Ignore*/}
+
+/* Salto de linea */
+( "\n" ) {return Linea;}
+
+/* Comillas */
+( "\"" ) {lexeme=yytext(); return Comillas;}
+
+/* Tipos de datos */
+(  byte | short | int | Integer | char | long | float | double ) {lexeme=yytext(); return T_Dato;}
+
+/* Dato String */
+( String ) {lexeme=yytext(); return string;}
+
+/* Operadores logicos */
+( "&&" | "||" | "!" | "&" | "|" | and | or | not ) {lexeme=yytext(); return Op_logico;}
+
+/* Operadores Aritmeticos */
+( "+" | "-" | "/" | "*" | "**" | "^" | "//" | "%" ) {lexeme=yytext(); return Op_Aritmeticos;}
+
+/*Operadores Relacionales */
+( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme=yytext(); return Op_relacional;}
+
+/* Operadores Atribucion */
+( "+=" | "-="  | "*=" | "/=" | "%=" | "**=" ) {lexeme=yytext(); return Op_atribucion;}
+
+/* Operadores Incremento y decremento */
+( "++" | "--" ) {lexeme=yytext(); return Op_incremento;}
+
+/*Operadores Booleanos*/
+(true | false) {lexeme=yytext(); return Op_booleano;}
+
+/* Asignacion */
+( "=" ) {lexeme=yytext(); return Asignacion;}
+
+/* Parentesis de apertura */
+( "(" ) {lexeme=yytext(); return Parentesis_a;}
+
+/* Parentesis de cierre */
+( ")" ) {lexeme=yytext(); return Parentesis_c;}
+
+/* Llave de apertura */
+( "{" ) {lexeme=yytext(); return Llave_a;}
+
+/* Llave de cierre */
+( "}" ) {lexeme=yytext(); return Llave_c;}
+
+/* Corchete de apertura */
+( "[" ) {lexeme = yytext(); return Corchete_a;}
+
+/* Corchete de cierre */
+( "]" ) {lexeme = yytext(); return Corchete_c;}
+
+/* Marcador de inicio de algoritmo */
+( "main" ) {lexeme=yytext(); return Main;}
+
+/* Punto y coma */
+( ";" ) {lexeme=yytext(); return P_coma;}
+
+/* Dos puntos */
+( ":" ) {lexeme=yytext(); return Dos_puntos;}
+
+/* For */	
+( for ) {lexeme=yytext(); return For;}
+
+/* If */	
+( if ) {lexeme=yytext(); return If;}
+
+/* Global */
+( global ) {lexeme=yytext(); return Global;}
+
+/* Try */	
+( try ) {lexeme=yytext(); return Try;}
+
+/* Class */	
+( class ) {lexeme=yytext(); return Class;}
+
+/* Except */	
+( except ) {lexeme=yytext(); return Except;}
+
+/* While */
+( while ) {lexeme=yytext(); return While;}
+
+/* Continue */
+( continue ) {lexeme=yytext(); return Continue;}
+
+/* Import */	
+( import ) {lexeme=yytext(); return Import;}
+
+/* Def */
+( def ) {lexeme=yytext(); return Def;}
+
+/* Finally */
+( finally ) {lexeme=yytext(); return Finally;}
+
+/* In */
+( in ) {lexeme=yytext(); return In;}
+
+/* Print */
+( print ) {lexeme=yytext(); return Print;}
+
+/* Pass */
+( pass ) {lexeme=yytext(); return Pass;}
+
+/* AS */
+( as ) {lexeme=yytext(); return As;}
+
+/* This */
+( this ) {lexeme=yytext(); return This;}
+
+/* Throw */
+( throw ) {lexeme=yytext(); return Throw;}
+
+/* Void */
+( void ) {lexeme=yytext(); return Void;}
+
+/* Null */
+( null ) {lexeme=yytext(); return Null;}
+
+/* Static */
+( static ) {lexeme=yytext(); return Static;}
+
+/* Catch */
+( catch ) {lexeme=yytext(); return Catch;}
+
+/* New */
+( new ) {lexeme=yytext(); return New;}
+
+/* Switch */
+( switch ) {lexeme=yytext(); return Switch;}
+
+/* package */
+( package ) {lexeme=yytext(); return Package;}
+
+/* private */
+( private ) {lexeme=yytext(); return Private;}
+
+/* default */
+( default ) {lexeme=yytext(); return Default;}
+
+/* Interface */
+( interface ) {lexeme=yytext(); return Interface;}
+
+/* boolean */
+( boolean ) {lexeme=yytext(); return Boolean;}
+
+/* Break */
+( break ) {lexeme=yytext(); return Break;}
+
+/* Native */
+( native ) {lexeme=yytext(); return Native;}
+
+/* Enum */
+( enum ) {lexeme=yytext(); return Enum;}
+
+/* Goto */
+( goto ) {lexeme=yytext(); return Goto;}
+
+/* Abstract */
+(abstract ) {lexeme=yytext(); return Abstract;}
+
+/* Case */
+( case ) {lexeme=yytext(); return Case;}
+
+/* Final */
+( final ) {lexeme=yytext(); return Final;}
+
+/* Letras */
+{L}({L}|{D})* {lexeme=yytext(); return Letras;}
+
+/* Numeros */
+("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
+
+/* Error */
+ . {return ERROR;}

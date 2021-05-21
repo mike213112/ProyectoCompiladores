@@ -17,14 +17,13 @@ public class Principal extends javax.swing.JFrame {
 
     Metodos meto = new Metodos();
     
+    
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        btnicon.setVisible(false);
-        lblname.setVisible(false);
         btnAbrir.setBackground(new Color(130,130,130));
         btnCrear.setBackground(new Color(130,130,130));
         btnGuardar.setBackground(new Color(130,130,130));
@@ -39,13 +38,23 @@ public class Principal extends javax.swing.JFrame {
         jButton10.setBackground(new Color(130,130,130));
         jButton11.setBackground(new Color(130,130,130));
         jButton12.setBackground(new Color(130,130,130));
+        jTextField1.setVisible(false);
+        //jPanel7.setBackground(Color.DARK_GRAY);
+        //jPanel7.setForeground(Color.WHITE);
     }
-    
-    
     
     public void PedirNombre(){
         String name = JOptionPane.showInputDialog(this, "Ingresa el nombre de tu proyecto");
-        meto.Pestañas(Tabs, name);
+        
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(null, "Debes ingresar un nombre");
+        }else{
+            meto.Pestañas(Tabs, name);
+        }
+    }
+    
+    public void Guardar(){
+        meto.GuardarArchivo();
     }
 
     /**
@@ -60,9 +69,10 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelmostrar = new javax.swing.JPanel();
         btnrefresh = new javax.swing.JButton();
-        btnicon = new javax.swing.JButton();
-        lblname = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         Tabs = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -78,6 +88,20 @@ public class Principal extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        PestañaSalida = new javax.swing.JTabbedPane();
+        PanelSalida = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuNuevo = new javax.swing.JMenuItem();
@@ -102,7 +126,10 @@ public class Principal extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(128, 139, 150));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Files", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("C059", 1, 18), java.awt.Color.white)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelmostrar.setBackground(new java.awt.Color(95, 95, 95));
 
         btnrefresh.setText("Refresh");
         btnrefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -110,21 +137,45 @@ public class Principal extends javax.swing.JFrame {
                 btnrefreshActionPerformed(evt);
             }
         });
-        jPanel1.add(btnrefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 12, -1, -1));
 
-        btnicon.setText("jButton2");
-        jPanel1.add(btnicon, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 46, 57, -1));
+        jTextField1.setText("jTextField1");
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        lblname.setText("jLabel1");
-        jPanel1.add(lblname, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 46, 114, 28));
+        javax.swing.GroupLayout panelmostrarLayout = new javax.swing.GroupLayout(panelmostrar);
+        panelmostrar.setLayout(panelmostrarLayout);
+        panelmostrarLayout.setHorizontalGroup(
+            panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelmostrarLayout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelmostrarLayout.createSequentialGroup()
+                        .addComponent(btnrefresh)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelmostrarLayout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))))
+        );
+        panelmostrarLayout.setVerticalGroup(
+            panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelmostrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnrefresh)
+                .addGap(45, 45, 45)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(463, Short.MAX_VALUE))
+        );
 
-        jPanel6.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 250, 530));
+        jScrollPane1.setViewportView(panelmostrar);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 250, 570));
+
+        jPanel6.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 250, 590));
 
         jPanel3.setBackground(new java.awt.Color(128, 139, 150));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(Tabs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 530));
+        jPanel3.add(Tabs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 440));
 
-        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 760, 530));
+        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 990, 440));
 
         jPanel4.setBackground(new java.awt.Color(64, 64, 64));
 
@@ -189,7 +240,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addComponent(btnAbrir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrear)
@@ -203,7 +253,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton10)
@@ -213,7 +263,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12)
-                .addContainerGap(549, Short.MAX_VALUE))
+                .addContainerGap(814, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +284,118 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel6.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 30));
+        jPanel6.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 30));
+
+        jPanel5.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel5.setForeground(java.awt.Color.white);
+
+        PestañaSalida.setBackground(new java.awt.Color(204, 204, 204));
+        PestañaSalida.setForeground(new java.awt.Color(3, 3, 3));
+        PestañaSalida.setFont(new java.awt.Font("C059", 1, 14)); // NOI18N
+
+        PanelSalida.setBackground(new java.awt.Color(95, 95, 95));
+        PanelSalida.setForeground(java.awt.Color.white);
+        PanelSalida.setFont(new java.awt.Font("C059", 1, 14)); // NOI18N
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(95, 95, 95));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(250, 250, 250));
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout PanelSalidaLayout = new javax.swing.GroupLayout(PanelSalida);
+        PanelSalida.setLayout(PanelSalidaLayout);
+        PanelSalidaLayout.setHorizontalGroup(
+            PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSalidaLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        PanelSalidaLayout.setVerticalGroup(
+            PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSalidaLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        PestañaSalida.addTab("Salida", PanelSalida);
+
+        jScrollPane2.setBackground(new java.awt.Color(95, 95, 95));
+
+        jTextArea2.setBackground(new java.awt.Color(95, 95, 95));
+        jTextArea2.setColumns(20);
+        jTextArea2.setForeground(new java.awt.Color(250, 250, 250));
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        PestañaSalida.addTab("Analizador Lexico", jPanel8);
+
+        jTextArea3.setBackground(new java.awt.Color(95, 95, 95));
+        jTextArea3.setColumns(20);
+        jTextArea3.setForeground(new java.awt.Color(250, 250, 250));
+        jTextArea3.setRows(5);
+        jScrollPane4.setViewportView(jTextArea3);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        PestañaSalida.addTab("Analizador Sintactico", jPanel9);
+
+        jTextArea4.setBackground(new java.awt.Color(95, 95, 95));
+        jTextArea4.setColumns(20);
+        jTextArea4.setForeground(new java.awt.Color(250, 250, 250));
+        jTextArea4.setRows(5);
+        jScrollPane5.setViewportView(jTextArea4);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        PestañaSalida.addTab("Analizador Semantico", jPanel10);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(PestañaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 987, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PestañaSalida)
+        );
+
+        jPanel6.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 990, 150));
 
         jMenuBar1.setBackground(new java.awt.Color(77, 77, 77));
 
@@ -257,6 +418,11 @@ public class Principal extends javax.swing.JFrame {
         menuGuardar.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         menuGuardar.setForeground(java.awt.Color.white);
         menuGuardar.setText("Guardar");
+        menuGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGuardarActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuGuardar);
 
         menuSalir.setBackground(new java.awt.Color(77, 77, 77));
@@ -283,11 +449,13 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -318,13 +486,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
         // TODO add your handling code here:
-        meto.ver(jPanel1, btnicon, lblname);
+        meto.ver(panelmostrar);
     }//GEN-LAST:event_btnrefreshActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         PedirNombre();
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void menuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGuardarActionPerformed
+        // TODO add your handling code here:
+        Guardar();
+    }//GEN-LAST:event_menuGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,11 +535,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelSalida;
+    private javax.swing.JTabbedPane PestañaSalida;
     private javax.swing.JTabbedPane Tabs;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnicon;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -381,13 +555,27 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel lblname;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JMenuItem menuNuevo;
     private javax.swing.JMenuItem menuSalir;
+    private javax.swing.JPanel panelmostrar;
     // End of variables declaration//GEN-END:variables
 }
