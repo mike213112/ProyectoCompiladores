@@ -24,7 +24,7 @@ public class ProyectoFinalCompi {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         // Rutas
-        /*
+        
         String ruta1 = System.getProperty("user.dir");
         String completarRuta1 = ruta1 + "/src/Classs/Flex";
         String completarRuta2 = ruta1 + "/src/Classs/FlexCup";
@@ -38,19 +38,20 @@ public class ProyectoFinalCompi {
         String directorio_windows = "";
         
         String sistema = System.getProperty("os.name");
-
+        
         Metodos metodos = new Metodos();
         
-        if (sistema == "Linux") {
+        if (sistema.equals("Linux")) {
             metodos.Directorio(directorio_linux);
+            Principal pri = new Principal();
+        pri.setVisible(true);
         }
         else{
             metodos.Directorio("");
         }
-        */
         
-        Principal pri = new Principal();
-        pri.setVisible(true);
+        
+        
     }
 
     public static void generar(String ruta1, String ruta2, String[] ruta3) throws IOException, Exception {

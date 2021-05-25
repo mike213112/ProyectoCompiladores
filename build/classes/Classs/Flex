@@ -29,6 +29,9 @@ espacio=[ ,\t,\r,\n]+
 /* Dato String */
 ( String ) {lexeme=yytext(); return string;}
 
+/* Public */
+( public ) {lexeme=yytext(); return Public;}
+
 /* Operadores logicos */
 ( "&&" | "||" | "!" | "&" | "|" | and | or | not ) {lexeme=yytext(); return Op_logico;}
 
@@ -76,6 +79,9 @@ espacio=[ ,\t,\r,\n]+
 
 /* Dos puntos */
 ( ":" ) {lexeme=yytext(); return Dos_puntos;}
+
+/* Punto */
+( "." ) {lexeme=yytext(); return Punto;}
 
 /* For */	
 ( for ) {lexeme=yytext(); return For;}
@@ -183,7 +189,7 @@ espacio=[ ,\t,\r,\n]+
 ( final ) {lexeme=yytext(); return Final;}
 
 /* Letras */
-{L}({L}|{D})* {lexeme=yytext(); return Letras;}
+{L}({L}|{D})* {lexeme=yytext(); return Identificador;}
 
 /* Numeros */
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}

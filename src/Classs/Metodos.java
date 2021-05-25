@@ -7,7 +7,9 @@ package Classs;
 
 import java.awt.*;
 import java.io.*;
+import java_cup.runtime.Symbol;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -253,9 +255,9 @@ public class Metodos {
                     etiqueta1.setBorder(null);
                     panel.add(etiqueta1);
                 }
-                else if (botonesr == 1) {
+                else if (botonesr == 2) {
                     boton2 = new JButton();
-                    boton2.setBounds(5, 70, 25, 25);
+                    boton2.setBounds(5, 100, 25, 25);
                     boton2.setBackground(new Color(95,95,95));
                     boton2.setIcon(new ImageIcon(getClass().getResource("/Images/cafe.png")));
                     boton2.setBorder(null);
@@ -264,13 +266,51 @@ public class Metodos {
                     //
                     etiqueta2 = new JTextField();
                     etiqueta2.setText(names[1]);
-                    etiqueta2.setBounds(33, 75, 130, 20);
+                    etiqueta2.setBounds(33, 105, 130, 20);
                     etiqueta2.setFont(new Font("C059", Font.BOLD, 15));
                     etiqueta2.setBackground(new Color(95,95,95));
                     etiqueta2.setForeground(Color.WHITE);
                     etiqueta2.setEditable(false);
                     etiqueta2.setBorder(null);
                     panel.add(etiqueta2);
+                }
+                else if (botonesr == 3) {
+                    boton3 = new JButton();
+                    boton3.setBounds(5, 130, 25, 25);
+                    boton3.setBackground(new Color(95,95,95));
+                    boton3.setIcon(new ImageIcon(getClass().getResource("/Images/cafe.png")));
+                    boton3.setBorder(null);
+                    boton3.setVisible(true);
+                    panel.add(boton3);
+                    //
+                    etiqueta3 = new JTextField();
+                    etiqueta3.setText(names[1]);
+                    etiqueta3.setBounds(33, 135, 130, 20);
+                    etiqueta3.setFont(new Font("C059", Font.BOLD, 15));
+                    etiqueta3.setBackground(new Color(95,95,95));
+                    etiqueta3.setForeground(Color.WHITE);
+                    etiqueta3.setEditable(false);
+                    etiqueta3.setBorder(null);
+                    panel.add(etiqueta3);
+                }
+                else if (botonesr == 4) {
+                    boton4 = new JButton();
+                    boton4.setBounds(5, 160, 25, 25);
+                    boton4.setBackground(new Color(95,95,95));
+                    boton4.setIcon(new ImageIcon(getClass().getResource("/Images/cafe.png")));
+                    boton4.setBorder(null);
+                    boton4.setVisible(true);
+                    panel.add(boton4);
+                    //
+                    etiqueta4 = new JTextField();
+                    etiqueta4.setText(names[1]);
+                    etiqueta4.setBounds(33, 165, 130, 20);
+                    etiqueta4.setFont(new Font("C059", Font.BOLD, 15));
+                    etiqueta4.setBackground(new Color(95,95,95));
+                    etiqueta4.setForeground(Color.WHITE);
+                    etiqueta4.setEditable(false);
+                    etiqueta4.setBorder(null);
+                    panel.add(etiqueta4);
                 }
             }
         }
@@ -286,6 +326,31 @@ public class Metodos {
         }
     }
 
+    public void AbrirArchivo(JTabbedPane Tabs) {
+        JFileChooser abrir = new JFileChooser();
+        FileNameExtensionFilter fililtro1 = new FileNameExtensionFilter("*.cpl", "cpl");
+        abrir.setFileFilter(fililtro1);
+        int seleccionar = abrir.showOpenDialog(null);
+        AreaText = new JTextArea();
+        String ver = "";
+        if (seleccionar == JFileChooser.APPROVE_OPTION) {
+            File a = abrir.getSelectedFile();
+            String obtenernombre = abrir.getName(a);
+            try (FileReader re = new FileReader(a)) {
+                String nombrar = "";
+                int valor = re.read();
+                while (valor != -1) {
+                    nombrar = nombrar + (char) valor;
+                    valor = re.read();
+                    ver = nombrar;
+                }
+            } catch (Exception e) {
+            }
+            AreaText.setText(ver);
+            Tabs.add(obtenernombre, AreaText);
+        }
+    }
+    
     public void GuardarArchivo() {
 
         for (int y = 0; y < contador; y++) {
@@ -302,6 +367,223 @@ public class Metodos {
                 System.out.println("Error");
             }
         }
+    }
+    
+    public void Analizador_Lexico(JTextArea salida){
+        int contador = 1;
+        
+        String obtenerDatos = (String) AreaText.getText();
+        Flex lex = new Flex(new StringReader(obtenerDatos));
+        String result = "Linea" + contador + "\t\tSimbolo\n";
+        
+        while(true){
+            
+            try {
+                Tokens to = lex.yylex();
+                if(to==null){
+                    salida.setText(result);
+                    return;
+                }
+                switch(to){
+                    case Linea:
+                        result += "<Letra>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Comillas:
+                        result += "<Comilla>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case T_Dato:
+                        result += "<Tipo de Dato>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case string:
+                        result += "<string>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_logico:
+                        result += "<Operador Logico>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_Aritmeticos:
+                        result += "<Operador Aritmetico>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_relacional:
+                        result += "<Operador Relacional>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_atribucion:
+                        result += "<Operador Atribucion>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_incremento:
+                        result += "<Operador Incremento>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Op_booleano:
+                        result += "<Operador Booleano>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Asignacion:
+                        result += "<Asignacion>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Parentesis_a:
+                        result += "<Parentesis Abierto>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Parentesis_c:
+                        result += "<Parentesis Cerrado>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Llave_a:
+                        result += "<Llave Abierta>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Llave_c:
+                        result += "<Llave Cerrada>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Corchete_a:
+                        result += "<Corchete Abierto>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Corchete_c:
+                        result += "<Corchete_c>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Main:
+                        result += "<Main>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case P_coma:
+                        result += "<Punto y coma>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Dos_puntos:
+                        result += "<Dos Puntos>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case For:
+                        result += "<For>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case If:
+                        result += "<If>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Global:
+                        result += "Global>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Try:
+                        result += "Try>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Class:
+                        result += "<Class>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Except:
+                        result += "<Except>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case While:
+                        result += "<While>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Continue:
+                        result += "<Continue>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Import:
+                        result += "<Import>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Def:
+                        result += "<Def>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Finally:
+                        result += "<Finally>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case In:
+                        result += "<In>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Print:
+                        result += "<Print>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Pass:
+                        result += "<Pass>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case As:
+                        result += "<As>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case This:
+                        result += "<This>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Throw:
+                        result += "<Throw>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Void:
+                        result += "<Void>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Null:
+                        result += "<Null>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Static:
+                        result += "<Static>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Catch:
+                        result += "<Catch>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case New:
+                        result += "<New>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Switch:
+                        result += "<Switch>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Package:
+                        result += "<Package>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Private:
+                        result += "<Private>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Default:
+                        result += "<Default>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Interface:
+                        result += "<Interface>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Boolean:
+                        result += "<Boolean>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Break:
+                        result += "<Break>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Native:
+                        result += "<Native>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Enum:
+                        result += "<Enum>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Goto:
+                        result += "<Goto>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Abstract:
+                        result += "<Abstract>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Case:
+                        result += "<Case>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Final:
+                        result += "<Final>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Identificador:
+                        result += "<Letras>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case Numero:
+                        result += "<Numero>\t\t" + lex.lexeme + "\n";
+                        break;
+                    case ERROR:
+                        result += "<ERROR SIMBOLO NO DEFINIDO>\t\t" + "\n";
+                        break;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }
+    
+    public void AnalizadorSintactico(JTextArea salida){
+        String obtener = AreaText.getText();
+        Sintaxis s = new Sintaxis(new Classs.FlexCup(new StringReader(obtener)));
+        
+        try {
+            Object result = s.parse().value;
+            salida.setText("Sintaxis Correcta\n");
+            salida.setForeground(new Color(37,64,2));
+        } catch (Exception e) {
+            Symbol sym = s.getS();
+            //salida.setText("Error de Sintaxis: "+ (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \n" + sym.value);
+            salida.setText("Error de Sintaxis: ");
+            salida.setForeground(new Color(255,0,0));
+        }
+    }
+    
+    public void AnalizadorSemantico(){
+        
     }
 
 }

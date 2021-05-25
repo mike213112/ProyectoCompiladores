@@ -33,12 +33,13 @@ public class Principal extends javax.swing.JFrame {
         jButton5.setBackground(new Color(130,130,130));
         jButton6.setBackground(new Color(130,130,130));
         jButton7.setBackground(new Color(130,130,130));
-        jButton8.setBackground(new Color(130,130,130));
+        btnEjecutar.setBackground(new Color(130,130,130));
         jButton9.setBackground(new Color(130,130,130));
         jButton10.setBackground(new Color(130,130,130));
         jButton11.setBackground(new Color(130,130,130));
         jButton12.setBackground(new Color(130,130,130));
         jTextField1.setVisible(false);
+        //jTextField1.setVisible(false);
         //jPanel7.setBackground(Color.DARK_GRAY);
         //jPanel7.setForeground(Color.WHITE);
     }
@@ -83,7 +84,7 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnEjecutar = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -139,30 +140,26 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jTextField1.setText("jTextField1");
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout panelmostrarLayout = new javax.swing.GroupLayout(panelmostrar);
         panelmostrar.setLayout(panelmostrarLayout);
         panelmostrarLayout.setHorizontalGroup(
             panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelmostrarLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addGroup(panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelmostrarLayout.createSequentialGroup()
-                        .addComponent(btnrefresh)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelmostrarLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))))
+                    .addComponent(btnrefresh, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         panelmostrarLayout.setVerticalGroup(
             panelmostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelmostrarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnrefresh)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(463, Short.MAX_VALUE))
+                .addContainerGap(487, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(panelmostrar);
@@ -181,6 +178,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/abrir.png"))); // NOI18N
         btnAbrir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/guardarm.png"))); // NOI18N
         btnGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -210,8 +212,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/abrir.png"))); // NOI18N
-        jButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnEjecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tocar.png"))); // NOI18N
+        btnEjecutar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEjecutarActionPerformed(evt);
+            }
+        });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/abrir.png"))); // NOI18N
         jButton9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -252,7 +259,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(btnEjecutar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,7 +270,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12)
-                .addContainerGap(814, Short.MAX_VALUE))
+                .addContainerGap(818, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +283,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
-                    .addComponent(jButton8)
+                    .addComponent(btnEjecutar)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
                     .addComponent(jButton11)
@@ -403,6 +410,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
 
+        menuNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, 0));
         menuNuevo.setBackground(new java.awt.Color(77, 77, 77));
         menuNuevo.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         menuNuevo.setForeground(java.awt.Color.white);
@@ -469,6 +477,7 @@ public class Principal extends javax.swing.JFrame {
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
         // TODO add your handling code here:
         //meto.ver(jPanel3);
+        System.exit(0);
         
     }//GEN-LAST:event_menuSalirActionPerformed
 
@@ -498,6 +507,17 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Guardar();
     }//GEN-LAST:event_menuGuardarActionPerformed
+
+    private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
+        // TODO add your handling code here:
+        meto.Analizador_Lexico(jTextArea2);
+        meto.AnalizadorSintactico(jTextArea3);
+    }//GEN-LAST:event_btnEjecutarActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        // TODO add your handling code here:
+        meto.AbrirArchivo(Tabs);
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,6 +560,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane Tabs;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEjecutar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton jButton10;
@@ -549,7 +570,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

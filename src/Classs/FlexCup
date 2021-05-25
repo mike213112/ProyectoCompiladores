@@ -30,13 +30,19 @@ espacio=[ ,\t,\r,\n]+
 ( "\"" ) {return new Symbol(sym.Comillas, yychar, yyline, yytext());}
 
 /* Tipos de datos */
-( String | byte | char | long | float | double ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
+( byte | char | long | float | double ) {return new Symbol(sym.T_Dato, yychar, yyline, yytext());}
+
+/* Public */
+( public ) {return new Symbol(sym.Public, yychar, yyline, yytext());}
+
+/* Void */
+( void ) {return new Symbol(sym.Void, yychar, yyline, yytext());}
 
 /* Tipo de dato Int (Para el main) */
 ( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
 
 /* Tipo de dato String */
-( String ) {return new Symbol(sym.Cadena, yychar, yyline, yytext());}
+( String ) {return new Symbol(sym.string, yychar, yyline, yytext());}
 
 /* Palabra reservada If */
 ( if ) {return new Symbol(sym.If, yychar, yyline, yytext());}
@@ -104,8 +110,20 @@ espacio=[ ,\t,\r,\n]+
 /* Marcador de inicio de algoritmo */
 ( "main" ) {return new Symbol(sym.Main, yychar, yyline, yytext());}
 
+/* Print */
+( print ) {return new Symbol(sym.Print, yychar, yyline, yytext());}
+
 /* Punto y coma */
 ( ";" ) {return new Symbol(sym.P_coma, yychar, yyline, yytext());}
+
+/* Dos puntos */
+( ":" ) {return new Symbol(sym.Dos_puntos, yychar, yyline, yytext());}
+
+/* Punto */
+( "." ) {return new Symbol(sym.Punto, yychar, yyline, yytext());}
+
+/* Asignacion */
+( "=" ) {return new Symbol(sym.Asignacion, yychar, yyline, yytext());}
 
 /* Identificador */
 {L}({L}|{D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}

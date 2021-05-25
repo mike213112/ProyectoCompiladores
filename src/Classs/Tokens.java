@@ -10,11 +10,11 @@ package Classs;
  * @author mike
  */
 public enum Tokens {
-    Reservada,
     Linea,
     Comillas,
     T_Dato,
     string,
+    Public,
     Op_logico,
     Op_Aritmeticos,
     Op_relacional,
@@ -31,6 +31,7 @@ public enum Tokens {
     Main,
     P_coma,
     Dos_puntos,
+    Punto,
     For,
     If,
     Global,
@@ -66,7 +67,7 @@ public enum Tokens {
     Abstract,
     Case,
     Final,
-    Letras,
+    Identificador,
     Numero,
     ERROR
 }
